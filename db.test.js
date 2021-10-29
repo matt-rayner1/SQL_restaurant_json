@@ -1,10 +1,12 @@
-const sqlite = require('sqlite3').verbose();
+const sqlite3 = require('sqlite3').verbose();
 const { TestWatcher } = require('@jest/core');
-const load = require('./index');
+const load = require('./index.js');
 
-desctibe('SQLite3', () => {
+const db = new sqlite3.Database('./restaurants.sqlite');
+
+describe('SQLite3', () => {
     beforeAll(done => {
-        debug.exec('CREATE TABLE IF NOT EXISTS restaurants(...);', done)
+        db.exec('CREATE TABLE IF NOT EXISTS restaurants(...);', done)
     })
     test('restaurants are loaded into the database', (done) => {
         load( (db) => {

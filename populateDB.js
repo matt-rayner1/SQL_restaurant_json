@@ -32,9 +32,11 @@ try {
                     }
                 }
             }
+        } catch(err) {
         } finally {
             //release resources
             stmt.finalize();
+            console.log('here')
         }
     });
 } finally {
